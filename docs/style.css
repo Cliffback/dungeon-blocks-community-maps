@@ -381,6 +381,33 @@ dialog::backdrop {
   cursor: pointer;
   font-weight: 600;
   color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.download-icon {
+  background: none;
+  border: none;
+  color: var(--blue);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.download-icon:hover {
+  color: var(--lavender);
+  background-color: var(--surface1);
+}
+
+.download-icon:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 
 #modal-bricks summary:focus-visible {

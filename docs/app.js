@@ -11,6 +11,7 @@
   let manifest = null;
   let authors = new Set();
   let currentPath = null;
+  let currentMap = null;
 
   // Load manifest
   try {
@@ -188,6 +189,7 @@
   }
 
   function openMapModal(map) {
+    currentMap = map;
     document.getElementById('modal-image').src = map.image || '';
     document.getElementById('modal-title').textContent = map.title;
     document.getElementById('modal-description').textContent = map.description || '';
@@ -246,6 +248,26 @@
   });
   modal.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
+  });
+
+  document.getElementById('modal-download-bricks').addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!currentMap) return;
+
+    const lines = Object.entries(currentMap.brickCount || {})
+      .sort((a, b) => b[1] - a[1])
+      .map(([brick, count]) => `${brick}: ${count}`);
+
+    const content = `Map: ${currentMap.title}\nTotal bricks: ${currentMap.totalBricks}\n\nBrick List:\n${lines.join('\n')}`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Brick List - ${currentMap.title}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
   });
 
   searchInput.addEventListener('input', () => {
