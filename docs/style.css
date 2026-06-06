@@ -391,8 +391,28 @@ dialog::backdrop {
 
 #modal-bricks-table {
   margin-top: 0.75rem;
-  max-height: 300px;
+  max-height: 200px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface2) var(--surface0);
+}
+
+#modal-bricks-table::-webkit-scrollbar {
+  width: 8px;
+}
+
+#modal-bricks-table::-webkit-scrollbar-track {
+  background: var(--surface0);
+  border-radius: 4px;
+}
+
+#modal-bricks-table::-webkit-scrollbar-thumb {
+  background: var(--surface2);
+  border-radius: 4px;
+}
+
+#modal-bricks-table::-webkit-scrollbar-thumb:hover {
+  background: var(--overlay0);
 }
 
 #modal-bricks-table table {
