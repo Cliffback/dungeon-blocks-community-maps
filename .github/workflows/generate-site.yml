@@ -24,14 +24,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate manifest
-        run: node scripts/generate-manifest.js
-
-      - name: Sync maps into docs
-        run: |
-          # Copy maps/ into docs/ so GitHub Pages can serve images alongside the site
-          rm -rf docs/maps
-          cp -r maps docs/maps
+      - name: Build site
+        run: npm run build
 
       - name: Commit and push
         run: |
