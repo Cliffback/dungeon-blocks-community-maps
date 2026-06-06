@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Community-driven collection of maps for Dungeon Blocks Builder. Browse, preview, and download 3D printable modular terrain maps.">
+  <meta name="theme-color" content="#1e1e2e">
+  <title>Dungeon Blocks Community Maps</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Dungeon Blocks Community Maps</h1>
+      <div class="controls">
+        <label for="search" class="visually-hidden">Search maps</label>
+        <input type="search" id="search" placeholder="Search maps..." autocomplete="off">
+        <label for="author-filter" class="visually-hidden">Filter by author</label>
+        <select id="author-filter">
+          <option value="">All authors</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav id="breadcrumbs" aria-label="Breadcrumb" class="hidden"></nav>
+    <div id="grid" class="grid"></div>
+    <div id="loading" class="loading">Loading maps...</div>
+    <div id="error" class="error hidden">Failed to load maps. Please try again later.</div>
+  </main>
+
+  <dialog id="map-modal" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <img id="modal-image" src="" alt="">
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <div id="modal-meta"></div>
+      <details id="modal-bricks">
+        <summary>Brick list</summary>
+        <div id="modal-bricks-table"></div>
+      </details>
+      <div class="modal-actions">
+        <a id="modal-download" class="btn" href="#" download>Download JSON</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
