@@ -27,14 +27,20 @@ jobs:
       - name: Generate manifest
         run: node scripts/generate-manifest.js
 
+      - name: Sync maps into docs
+        run: |
+          # Copy maps/ into docs/ so GitHub Pages can serve images alongside the site
+          rm -rf docs/maps
+          cp -r maps docs/maps
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/manifest.json
+          git add docs/manifest.json docs/maps
           if git diff --cached --quiet; then
-            echo "No changes to manifest.json"
+            echo "No changes to deploy"
           else
-            git commit -m "chore: regenerate manifest.json [skip ci]"
+            git commit -m "chore: regenerate site [skip ci]"
             git push
           fi

@@ -12,9 +12,6 @@
   let authors = new Set();
   let currentPath = null;
 
-  const IS_DOCS_SUBDIR = location.pathname.includes('/docs/');
-  const MAPS_PREFIX = IS_DOCS_SUBDIR ? '../' : '';
-
   // Load manifest
   try {
     const res = await fetch('manifest.json');
@@ -81,7 +78,7 @@
     imgWrap.className = 'card-image';
     const img = document.createElement('img');
     const imgSrc = item.preview || item.image || '';
-    img.src = imgSrc ? MAPS_PREFIX + imgSrc : '';
+    img.src = imgSrc || '';
     img.alt = item.name || item.title || 'Map preview';
     img.loading = 'lazy';
     imgWrap.appendChild(img);
@@ -191,7 +188,7 @@
   }
 
   function openMapModal(map) {
-    document.getElementById('modal-image').src = (map.image ? MAPS_PREFIX + map.image : '') || '';
+    document.getElementById('modal-image').src = map.image || '';
     document.getElementById('modal-title').textContent = map.title;
     document.getElementById('modal-description').textContent = map.description || '';
 
@@ -224,7 +221,7 @@
     }
 
     const download = document.getElementById('modal-download');
-    download.href = MAPS_PREFIX + map.path;
+    download.href = map.path;
     download.download = map.path.split('/').pop();
 
     modal.showModal();
