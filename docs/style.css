@@ -385,6 +385,21 @@ dialog::backdrop {
   justify-content: space-between;
   align-items: center;
   user-select: none;
+  padding-left: 1rem;
+  position: relative;
+}
+
+#modal-bricks summary::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  font-size: 0.75rem;
+  color: var(--subtext0);
+  transition: transform 0.2s;
+}
+
+#modal-bricks[open] > summary::before {
+  content: '▼';
 }
 
 .download-icon {
